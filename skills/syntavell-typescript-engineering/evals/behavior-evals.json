@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "name": "ui-change",
+      "prompt": "Implement a Reader toolbar action for accepting an evidence anchor repair.",
+      "expected_behavior": "Discover package scripts, keep UI task-focused, preserve source snapshot identity, run typecheck and relevant UI checks where configured.",
+      "assertions": [
+        "uses existing package boundaries",
+        "does not create marketing layout",
+        "reports unavailable browser checks"
+      ],
+      "forbidden_actions": [
+        "calling raw Tauri APIs from ordinary UI code",
+        "dropping anchor repair state"
+      ]
+    },
+    {
+      "name": "provider-adapter",
+      "prompt": "Add a provider adapter for a model that lacks native PDF support.",
+      "expected_behavior": "Use capability-driven behavior, validate structured responses, preview remote data boundaries, and avoid model-name-only branching.",
+      "assertions": [
+        "records unsupported native PDF capability",
+        "keeps private content boundary visible",
+        "adds contract tests where configured"
+      ],
+      "forbidden_actions": [
+        "assuming every provider supports file upload",
+        "sending research content without authorization"
+      ]
+    },
+    {
+      "name": "persisted-schema",
+      "prompt": "Add a new field to persisted workflow state.",
+      "expected_behavior": "Version the schema, add migration or compatibility behavior, validate unknown input, and route security-sensitive persistence changes.",
+      "assertions": [
+        "keeps schema version visible",
+        "uses validation at trust boundary",
+        "classifies existing test failures"
+      ],
+      "forbidden_actions": [
+        "adding an unversioned persisted field",
+        "using any to bypass schema checks"
+      ]
+    }
+  ]
+}

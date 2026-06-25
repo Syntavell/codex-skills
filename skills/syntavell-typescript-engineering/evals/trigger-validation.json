@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "positive": [
+    {
+      "query": "Implement the Reader evidence anchor repair UI in React.",
+      "should_trigger": true,
+      "reason": "TypeScript UI and Reader work."
+    },
+    {
+      "query": "Add a provider adapter capability table for native PDF support.",
+      "should_trigger": true,
+      "reason": "TypeScript provider adapter behavior."
+    },
+    {
+      "query": "Update the persisted workflow schema and validation tests.",
+      "should_trigger": true,
+      "reason": "TypeScript schema and workflow work."
+    },
+    {
+      "query": "Create metadata retrieval fixtures for DOI lookup failures.",
+      "should_trigger": true,
+      "reason": "Metadata and retrieval TypeScript work."
+    }
+  ],
+  "negative": [
+    {
+      "query": "Add a Rust filesystem watcher.",
+      "should_trigger": false,
+      "reason": "Rust native work."
+    },
+    {
+      "query": "Write an ADR for provider privacy boundaries.",
+      "should_trigger": false,
+      "reason": "Documentation and decision record work."
+    },
+    {
+      "query": "Commit the staged TypeScript changes.",
+      "should_trigger": false,
+      "reason": "Git operation."
+    },
+    {
+      "query": "Review the prompt injection threat model without editing code.",
+      "should_trigger": false,
+      "reason": "Security review only."
+    }
+  ]
+}

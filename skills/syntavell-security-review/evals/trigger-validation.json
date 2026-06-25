@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "positive": [
+    {
+      "query": "Review this Tauri command diff for filesystem privilege risks.",
+      "should_trigger": true,
+      "reason": "Security-sensitive native boundary."
+    },
+    {
+      "query": "Assess the privacy impact of sending selected PDF pages to an AI provider.",
+      "should_trigger": true,
+      "reason": "Remote provider data movement."
+    },
+    {
+      "query": "Review this GitHub Actions dependency update for supply-chain risk.",
+      "should_trigger": true,
+      "reason": "CI and dependency supply-chain surface."
+    },
+    {
+      "query": "Perform a release security review for the desktop artifact.",
+      "should_trigger": true,
+      "reason": "Release and artifact security review."
+    }
+  ],
+  "negative": [
+    {
+      "query": "Implement the Reader toolbar layout.",
+      "should_trigger": false,
+      "reason": "Ordinary UI implementation."
+    },
+    {
+      "query": "Reformat the README table of contents.",
+      "should_trigger": false,
+      "reason": "Docs formatting without security surface."
+    },
+    {
+      "query": "Commit the security policy edits.",
+      "should_trigger": false,
+      "reason": "Git operation."
+    },
+    {
+      "query": "Explain the product roadmap in Chinese.",
+      "should_trigger": false,
+      "reason": "Product explanation without security review request."
+    }
+  ]
+}

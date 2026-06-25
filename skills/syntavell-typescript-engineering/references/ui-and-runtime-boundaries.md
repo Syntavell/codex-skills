@@ -1,5 +1,9 @@
 # UI and Runtime Boundaries
 
+## When to read
+
+Read this for UI, Reader, Writer, platform runtime, browser/Tauri boundary, and privacy UI work.
+
 ## UI Principles
 
 Syntavell is a research workspace, not a landing page.
@@ -49,6 +53,8 @@ interface PlatformRuntime {
 ```
 
 Browser and Tauri implementations can differ, but product workflows should not call raw platform APIs directly.
+
+If the current repository does not yet expose a runtime interface, report that boundary gap instead of inventing a new abstraction without user-visible need.
 
 ## Privacy UI
 

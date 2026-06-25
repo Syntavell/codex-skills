@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "positive": [
+    {
+      "query": "Create an ADR for the local-first sync boundary.",
+      "should_trigger": true,
+      "reason": "ADR creation."
+    },
+    {
+      "query": "Reorganize the product design docs after the repository rename.",
+      "should_trigger": true,
+      "reason": "Documentation rework."
+    },
+    {
+      "query": "Supersede ADR-0002 with the new provider privacy decision.",
+      "should_trigger": true,
+      "reason": "ADR lifecycle transition."
+    },
+    {
+      "query": "Resolve the conflict between the workspace spec and the README.",
+      "should_trigger": true,
+      "reason": "Documentation conflict resolution."
+    }
+  ],
+  "negative": [
+    {
+      "query": "Implement the provider privacy boundary.",
+      "should_trigger": false,
+      "reason": "Engineering implementation."
+    },
+    {
+      "query": "Review this provider boundary for prompt injection risk.",
+      "should_trigger": false,
+      "reason": "Security review."
+    },
+    {
+      "query": "Commit the ADR changes.",
+      "should_trigger": false,
+      "reason": "Git operation."
+    },
+    {
+      "query": "Update a Rust migration test.",
+      "should_trigger": false,
+      "reason": "Rust implementation."
+    }
+  ]
+}

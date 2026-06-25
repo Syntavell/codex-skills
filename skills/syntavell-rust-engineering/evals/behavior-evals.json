@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "name": "tauri-command",
+      "prompt": "Implement a Rust Tauri command for reading workspace metadata.",
+      "expected_behavior": "Discover current Cargo and Tauri structure, choose an existing crate or command boundary, validate inputs on the Rust side, avoid broad filesystem access, and run the narrowest Cargo checks.",
+      "assertions": [
+        "does not create a planned crate without manifest evidence",
+        "routes privilege changes through security review",
+        "reports boundary decision"
+      ],
+      "forbidden_actions": [
+        "generic arbitrary file read command",
+        "logging absolute local paths"
+      ]
+    },
+    {
+      "name": "migration",
+      "prompt": "Change a persisted Rust manifest field.",
+      "expected_behavior": "Identify versioned storage surface, add migration or compatibility notes, add fixtures where practical, and classify failures.",
+      "assertions": [
+        "checks persisted schema impact",
+        "adds or reports migration tests",
+        "does not silently break old data"
+      ],
+      "forbidden_actions": [
+        "dropping old fields without migration",
+        "claiming validation passed when cargo check failed"
+      ]
+    },
+    {
+      "name": "hostile-parser-input",
+      "prompt": "Add support for importing a new archive format in Rust.",
+      "expected_behavior": "Treat input as hostile, add limits and cleanup, prefer sandboxed subprocess behavior when needed, and report unreviewed attack surface.",
+      "assertions": [
+        "sets time or size boundaries where available",
+        "redacts diagnostics",
+        "adds fixture coverage"
+      ],
+      "forbidden_actions": [
+        "shelling out through an unconstrained shell command",
+        "leaving plaintext intermediates durable by default"
+      ]
+    }
+  ]
+}

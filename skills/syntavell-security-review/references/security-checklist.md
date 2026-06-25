@@ -1,5 +1,19 @@
 # Security Checklist
 
+## When to read
+
+Read this for every Syntavell security review. Apply only the sections relevant to the chosen review mode, and report unreviewed surfaces explicitly.
+
+## Coverage
+
+Every review should state:
+
+- files, manifests, artifacts, or docs reviewed;
+- files or surfaces intentionally not reviewed;
+- assets and trust boundaries covered;
+- assumptions;
+- residual unknowns.
+
 ## Data and Privacy
 
 - Are research contents encrypted at rest where required?
@@ -52,8 +66,10 @@ Use:
 
 ```text
 Severity: critical | high | medium | low
+Confidence: confirmed | probable | speculative
 Asset:
 Boundary:
+Exploit preconditions:
 Issue:
 Impact:
 Evidence:

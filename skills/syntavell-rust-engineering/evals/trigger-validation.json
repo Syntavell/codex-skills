@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "positive": [
+    {
+      "query": "Add a Tauri command that validates its Rust-side input before touching the filesystem.",
+      "should_trigger": true,
+      "reason": "Rust Tauri command implementation."
+    },
+    {
+      "query": "Review this Cargo workspace migration for vault schema compatibility.",
+      "should_trigger": true,
+      "reason": "Rust persistence and migration review."
+    },
+    {
+      "query": "Implement bounded parsing for imported PDFs in the native parser crate.",
+      "should_trigger": true,
+      "reason": "Rust parser and hostile input surface."
+    },
+    {
+      "query": "Add Rust tests for object log replay and partial write recovery.",
+      "should_trigger": true,
+      "reason": "Rust durability and recovery testing."
+    }
+  ],
+  "negative": [
+    {
+      "query": "Build the React Reader toolbar.",
+      "should_trigger": false,
+      "reason": "TypeScript UI work."
+    },
+    {
+      "query": "Reorganize the product architecture docs.",
+      "should_trigger": false,
+      "reason": "Documentation-only work."
+    },
+    {
+      "query": "Commit the finished Rust changes.",
+      "should_trigger": false,
+      "reason": "Git operation after implementation."
+    },
+    {
+      "query": "Review security risks in the vault design without editing code.",
+      "should_trigger": false,
+      "reason": "Security review only."
+    }
+  ]
+}

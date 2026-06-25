@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "positive": [
+    {
+      "query": "Commit the currently staged documentation changes, but do not push.",
+      "should_trigger": true,
+      "reason": "User explicitly requests a local commit."
+    },
+    {
+      "query": "Inspect this repository's Git state and tell me whether it is ready to commit.",
+      "should_trigger": true,
+      "reason": "User asks for Git commit readiness."
+    },
+    {
+      "query": "Stage README.md and docs/adr/0001.md, then create a conventional commit.",
+      "should_trigger": true,
+      "reason": "User requests staging and commit creation."
+    },
+    {
+      "query": "Update the parent repository's .codex submodule pointer after the skills repository commit has been pushed.",
+      "should_trigger": true,
+      "reason": "User requests a submodule pointer workflow."
+    }
+  ],
+  "negative": [
+    {
+      "query": "Review this Rust diff for correctness but do not commit anything.",
+      "should_trigger": false,
+      "reason": "Review without Git operation."
+    },
+    {
+      "query": "Implement the new settings page and update tests.",
+      "should_trigger": false,
+      "reason": "Implementation should use engineering skills first."
+    },
+    {
+      "query": "Analyze the security risk of this dependency update.",
+      "should_trigger": false,
+      "reason": "Security review with no commit request."
+    },
+    {
+      "query": "Explain why the CI workflow failed.",
+      "should_trigger": false,
+      "reason": "CI debugging without Git operation."
+    }
+  ]
+}

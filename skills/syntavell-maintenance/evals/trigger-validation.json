@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "positive": [
+    {
+      "query": "Update the parser dependency and review changelog, lockfile, licenses, and test impact.",
+      "should_trigger": true,
+      "reason": "Dependency maintenance."
+    },
+    {
+      "query": "Plan release readiness for the desktop app artifact.",
+      "should_trigger": true,
+      "reason": "Release preparation."
+    },
+    {
+      "query": "Update the .codex submodule pointer in the parent repository.",
+      "should_trigger": true,
+      "reason": "Submodule maintenance."
+    },
+    {
+      "query": "Review the GitHub Actions workflow permissions and make CI deterministic.",
+      "should_trigger": true,
+      "reason": "CI maintenance."
+    }
+  ],
+  "negative": [
+    {
+      "query": "Implement the new settings page and update tests.",
+      "should_trigger": false,
+      "reason": "Feature implementation."
+    },
+    {
+      "query": "Write an ADR for the release policy.",
+      "should_trigger": false,
+      "reason": "Docs and ADR work."
+    },
+    {
+      "query": "Commit the dependency update.",
+      "should_trigger": false,
+      "reason": "Git operation after maintenance."
+    },
+    {
+      "query": "Review this parser update for remote code execution risk.",
+      "should_trigger": false,
+      "reason": "Security review."
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 # Rust Security Boundaries
 
+## When to read
+
+Read this when Rust work touches encryption, secrets, filesystem access, parsers, subprocesses, Tauri commands, backups, sync, or untrusted input.
+
 ## Secrets and Keys
 
 - Never print, log, serialize, or include secrets in panic messages.
@@ -43,6 +47,7 @@ Required controls:
 - Validate all command inputs on the Rust side even when TypeScript validates them first.
 - Do not expose arbitrary filesystem, network, subprocess, or secret access through generic commands.
 - Use capability files to constrain which windows can call privileged commands.
+- Treat new command permissions as security-sensitive product surface, not implementation detail.
 
 ## Operation Log and Recovery
 

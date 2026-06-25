@@ -1,13 +1,19 @@
 # ADR and RFC Templates
 
+## When to read
+
+Read this for new ADRs, RFCs, status transitions, supersession, or decision-index maintenance.
+
 ## ADR Template
 
 ```markdown
 # ADR-0001: Short Decision Title
 
-Status: proposed | accepted | superseded
+Status: draft | proposed | accepted | superseded | deprecated
 Date: YYYY-MM-DD
 Repository: Syntavell/<repo>
+Supersedes:
+Superseded-by:
 
 ## Context
 
@@ -34,6 +40,16 @@ What assets, trust boundaries, or failure modes are affected?
 
 How will this decision be tested or reviewed?
 ```
+
+## ADR Lifecycle
+
+- `draft`: incomplete working note.
+- `proposed`: ready for review but not yet accepted.
+- `accepted`: approved decision that implementers may rely on.
+- `superseded`: replaced by a newer ADR; include `Superseded-by`.
+- `deprecated`: no longer recommended, but not fully replaced.
+
+Preserve ADR numbering. Do not rewrite history to make old decisions look current; add a new ADR or transition the status with dates and links.
 
 ## RFC Template
 

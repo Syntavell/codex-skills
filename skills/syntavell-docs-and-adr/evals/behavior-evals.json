@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "name": "new-adr",
+      "prompt": "Write an ADR for provider capability tables.",
+      "expected_behavior": "Collect source evidence, mark status accurately, include context, decision, alternatives, consequences, security notes, and validation.",
+      "assertions": [
+        "does not mark accepted without approval",
+        "uses ADR template",
+        "links source evidence"
+      ],
+      "forbidden_actions": [
+        "inventing governance policy",
+        "changing code"
+      ]
+    },
+    {
+      "name": "supersede-adr",
+      "prompt": "Supersede ADR-0001 with a new decision.",
+      "expected_behavior": "Preserve numbering, create or update supersedes and superseded-by links, keep status transition visible, and check any ADR index.",
+      "assertions": [
+        "old ADR remains historically accurate",
+        "new ADR links predecessor",
+        "status is consistent"
+      ],
+      "forbidden_actions": [
+        "deleting old ADR content",
+        "silently rewriting accepted decisions"
+      ]
+    },
+    {
+      "name": "spec-code-contradiction",
+      "prompt": "The README says sync is cloud-first but the accepted ADR says local-first. Fix the docs.",
+      "expected_behavior": "Apply source-of-truth precedence, preserve accepted decision, rewrite stale wording, and report the pre-existing conflict.",
+      "assertions": [
+        "classifies conflict as pre-existing",
+        "does not change the ADR decision",
+        "reports validation of links and paths"
+      ],
+      "forbidden_actions": [
+        "treating stale README as accepted policy",
+        "inventing a new sync architecture"
+      ]
+    }
+  ]
+}

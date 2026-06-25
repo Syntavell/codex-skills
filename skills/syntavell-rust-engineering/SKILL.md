@@ -1,55 +1,153 @@
 ---
 name: syntavell-rust-engineering
-description: Build, modify, or review Rust code for Syntavell. Use when working on Tauri commands, native-core crates, vault crypto, local indexes, document parsers, compiler hosts, filesystem tasks, background jobs, FFI/WASM boundaries, or any Rust implementation in Syntavell repositories.
+description: >
+  Use this skill when implementing or reviewing Rust code in Syntavell, including
+  Tauri commands, native execution, vault crypto, local indexes, parsers,
+  compiler hosts, filesystem tasks, background jobs, FFI, or WASM boundaries. Do
+  not use it for TypeScript work, documentation-only edits, Git commits, or to
+  create planned crates that are not present in the current repository.
+metadata:
+  syntavell.version: "0.2.0"
+  syntavell.owner: "engineering"
+  syntavell.status: "experimental"
+  syntavell.compatibility.requires:
+    - git
+    - cargo
 ---
 
 # Syntavell Rust Engineering
 
-## Overview
+## Goal
 
-Use this skill for Rust work that touches Syntavell's local-first native boundary. Rust code in Syntavell is responsible for privileged local execution, encryption, storage, parsing, indexing, compiler hosting, process isolation, and Tauri IPC.
+Implement Rust changes at the right native boundary, with explicit crate discovery, security routing, validation, and failure attribution.
 
-Before implementation, read `references/rust-standards.md`. If the change touches encryption, secrets, filesystem access, parsers, subprocesses, Tauri commands, backups, sync, or untrusted input, also read `references/rust-security-boundaries.md`.
+## Activation Boundaries
+
+Use when:
+
+- The task changes or reviews Rust source, Cargo manifests, native tests, Rust build scripts, Tauri command handlers, or Rust-facing FFI/WASM boundaries.
+- The requested behavior requires privileged local execution, durable storage, parsing, crypto, indexing, compiler orchestration, or native OS integration.
+
+Do not use when:
+
+- The change belongs entirely in TypeScript, docs, CI, or Git history.
+- A planned crate name appears only in architecture notes and not in current manifests.
+- The user asks only for security review; use `syntavell-security-review`.
+
+Companion skills:
+
+- Route crypto, secrets, filesystem, parser, compiler, sync, or Tauri privilege changes through `syntavell-security-review`.
+- Route durable architecture decisions through `syntavell-docs-and-adr`.
+- Use `syntavell-git-commit` only when the user asks to commit.
+
+## Source-of-truth precedence
+
+1. The user's requested behavior.
+2. Current `Cargo.toml`, workspace metadata, source tree, and tests.
+3. Repository-local `AGENTS.md`, accepted ADRs, and specs.
+4. Accepted cross-repository Syntavell specifications.
+5. This skill's defaults and illustrative crate examples.
+
+Current repository structure wins over target architecture examples. Never create a crate, directory, command, or storage boundary only because this skill mentions it.
+
+## Inputs and Preconditions
+
+- Cargo workspace or crate discovery result.
+- Target crate, binary, test, or Tauri command boundary.
+- Change type and risk level.
+- Repository-native verification commands, or a clear note that they are absent.
+
+## Select a mode
+
+- `crate-discovery`: inspect current Cargo workspace, crates, features, and tests.
+- `tauri-command`: typed IPC payloads, permissions, input validation, and error redaction.
+- `persistence-migration`: durable state, schema versions, transactions, backups, and recovery tests.
+- `parser-compiler`: hostile input, subprocess isolation, limits, diagnostics, and cleanup.
+- `crypto-secrets`: key separation, reviewed primitives, test vectors, and redaction.
+- `background-io`: filesystem, indexing, long-running jobs, cancellation, and crash recovery.
+- `api-review`: boundary, error, serialization, and compatibility review.
 
 ## Workflow
 
-1. Locate the crate and boundary.
-   - Identify whether the change belongs in `native-core`, `vault-crypto`, `document-parser`, `local-index`, `compiler-host`, or `native-bridge`.
-   - Keep product decisions and prompt/business logic in TypeScript unless the operation requires native capability.
+1. Discover the current Rust surface.
+   - Inspect `Cargo.toml`, workspace members, features, and existing tests.
+   - Prefer repository-native scripts over assumed package names.
 
-2. Model data explicitly.
-   - Prefer typed structs, enums, and error variants over ad hoc strings.
-   - Treat workspace IDs, object IDs, operation hashes, device IDs, and key IDs as distinct domain types when practical.
+2. Classify the change mode and native boundary.
+   - Keep product workflow, prompt wording, and UI state in TypeScript unless native capability is required.
+   - Make crate-boundary choices explicit in the final output.
 
-3. Preserve local-first safety.
-   - Never make server state the only source of truth.
-   - Never log plaintext research content, secrets, keys, prompts, provider responses, or absolute local paths.
-   - Keep encrypted object storage, materialized views, and operation logs conceptually separate.
+3. Read the relevant references.
+   - Always read `references/rust-standards.md`.
+   - Read `references/rust-security-boundaries.md` for privileged, hostile-input, crypto, filesystem, Tauri, backup, or sync work.
 
-4. Design for crash recovery.
-   - Use atomic file writes or transactional database operations for durable state.
-   - Keep migrations reversible or backed up.
-   - Make recovery and verification paths testable.
+4. Implement narrowly.
+   - Use typed structs, enums, explicit versions, structured errors, and bounded input handling.
+   - Do not leak secrets, plaintext research content, provider responses, prompts, or absolute paths in logs or errors.
 
-5. Validate untrusted input.
-   - Treat PDFs, webpages, templates, LaTeX, Typst, imported archives, provider responses, and plugin inputs as hostile.
-   - Prefer bounded parsing, explicit limits, timeouts, and sandboxed subprocesses.
+5. Test at the boundary.
+   - Add unit, fixture, integration, property, migration, or corruption tests according to the mode.
 
-6. Test at the boundary.
-   - Add unit tests for pure logic.
-   - Add integration or fixture tests for filesystem, database, parser, compiler, and migration behavior.
-   - Add property tests or test vectors for serialization, crypto wrappers, and log replay when feasible.
+6. Validate and attribute failures.
+   - Run the narrowest meaningful Cargo validation.
+   - Separate new failures from pre-existing and environment failures.
 
-7. Verify before handoff.
-   - Run `cargo fmt --check`.
-   - Run `cargo clippy --all-targets --all-features` when the crate supports it.
-   - Run `cargo test` or the narrowest meaningful test command.
-   - If the project is still bootstrapping, run at least `cargo check` and explain any omitted checks.
+## Authorization Gates
 
-## Design Defaults
+Explicit user approval is required before:
 
-- Keep `unsafe` out of product code unless there is no reasonable alternative and the invariants are documented.
-- Prefer well-reviewed crates for crypto, serialization, SQL, and parsing.
-- Keep public API contracts stable and versioned when they touch `workspace-spec`.
-- Make Tauri command payloads small, typed, auditable, and permission-scoped.
-- Prefer deterministic behavior over implicit global state.
+- Adding or replacing crypto primitives, storage formats, or recovery semantics.
+- Introducing network access, subprocess execution, broad filesystem access, or plugin host permissions.
+- Changing persisted schema compatibility, migrations, or workspace-spec contracts.
+- Adding large dependencies, vendored code, or native binaries.
+
+## Stop Conditions
+
+Stop before modifying code when:
+
+- No current Cargo target or crate boundary can be identified.
+- The requested change belongs in TypeScript or docs instead.
+- The change requires a security or architecture decision that is not yet accepted.
+- Validation would require unavailable credentials, private data, or unsafe sample inputs.
+
+## Validation Matrix
+
+| Mode | Required validation |
+|---|---|
+| `crate-discovery` | report manifests, crates, features, and available checks |
+| `tauri-command` | Rust input validation, permission review, IPC tests where present |
+| `persistence-migration` | migration fixtures, old-version compatibility, crash/corruption tests |
+| `parser-compiler` | hostile fixture, timeout/limit path, diagnostic redaction |
+| `crypto-secrets` | reviewed crate usage, test vectors, no plaintext logging |
+| `background-io` | cancellation, atomicity, retry, and partial-write behavior |
+| `api-review` | typed payloads, error taxonomy, serialization compatibility |
+
+## Failure Classification
+
+- `caused-by-change`: introduced by the Rust edit.
+- `pre-existing`: present before the edit or outside touched crates.
+- `environment`: missing toolchain, OS capability, fixture, database, or network.
+- `unsupported`: requested behavior conflicts with accepted architecture or security policy.
+
+## Final Output Contract
+
+```text
+Repository:
+Mode:
+Crate or target:
+Boundary decision:
+Actions:
+Validation:
+New failures:
+Pre-existing failures:
+Security routing:
+Remaining risks:
+Follow-up:
+```
+
+## Reference Routing
+
+- Read `references/rust-standards.md` for any Rust implementation or review.
+- Read `references/rust-security-boundaries.md` for crypto, secrets, filesystem, parser, compiler, Tauri, backup, sync, subprocess, or untrusted-input work.
+- Maintain trigger scenarios in `evals/trigger-validation.json`.
+- Maintain behavior scenarios in `evals/behavior-evals.json`.

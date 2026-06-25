@@ -1,5 +1,9 @@
 # Disclosure and Severity
 
+## When to read
+
+Read this for severity calls, vulnerability reports, public disclosure wording, security policy edits, and release-blocking security decisions.
+
 ## Severity Guide
 
 Critical:
@@ -37,3 +41,5 @@ Low:
 ## Review Language
 
 Be concrete and bounded. Avoid vague statements like "make this secure." Name the asset, boundary, and failure mode.
+
+Do not publish exploit steps or proof-of-concept details before a mitigation is available and the user explicitly authorizes disclosure handling.

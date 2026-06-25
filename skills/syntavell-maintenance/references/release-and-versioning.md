@@ -1,5 +1,9 @@
 # Release and Versioning
 
+## When to read
+
+Read this for release preparation, version changes, changelog work, schema compatibility, template versioning, and submodule version decisions.
+
 ## Versioned Surfaces
 
 Track versions for:
@@ -20,12 +24,30 @@ Track versions for:
 Before a release:
 
 1. Confirm scope and target repositories.
-2. Run full repository validation.
-3. Check migrations and compatibility notes.
-4. Check security-sensitive dependency changes.
-5. Update changelog or release notes if the repository uses them.
-6. Confirm generated artifacts and checksums.
-7. Tag only after the commit intended for release is pushed.
+2. Identify the version source: manifest, tag, changelog, package metadata, or app bundle.
+3. Run full repository validation.
+4. Check migrations and compatibility notes.
+5. Check security-sensitive dependency changes.
+6. Update changelog or release notes if the repository uses them.
+7. Confirm generated artifacts, checksums, signatures, and provenance.
+8. Prepare a rollback plan.
+9. Tag only after the commit intended for release is pushed and publication is authorized.
+
+## Release Readiness Result
+
+Report:
+
+```text
+Version:
+Commit:
+Artifacts:
+Validation:
+Security review:
+Compatibility notes:
+Rollback:
+Publication gates:
+Ready: yes | no
+```
 
 ## Compatibility
 

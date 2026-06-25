@@ -1,8 +1,12 @@
 # TypeScript Standards
 
+## When to read
+
+Read this for any TypeScript implementation or review. The current package manager files and workspace manifests are authoritative.
+
 ## Package Responsibilities
 
-Expected package boundaries:
+Illustrative package boundary candidates:
 
 - `ui`: design system primitives and shared components;
 - `domain`: core entities, invariants, schemas, and pure workflow logic;
@@ -14,6 +18,8 @@ Expected package boundaries:
 - `retrieval`: parsing chunks, indexes, reranking, evidence retrieval;
 - `sync`: encrypted object and operation synchronization protocol clients;
 - `platform`: browser, desktop, worker, and API runtime interfaces.
+
+These are target boundary examples, not required package names. Do not create a package or directory only because it is listed here.
 
 ## Types and Schemas
 
@@ -57,3 +63,5 @@ Prefer:
 - regression tests for evidence anchors and AI citation precision.
 
 When package scripts are absent, identify the expected script names instead of inventing local-only tooling.
+
+Classify failures as caused by the change, pre-existing, environment, or unsupported. Do not hide pre-existing failures by claiming validation passed.

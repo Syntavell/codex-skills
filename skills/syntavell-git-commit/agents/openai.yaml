@@ -1,4 +1,4 @@
 interface:
   display_name: "Syntavell Git Commit"
   short_description: "Commit Syntavell changes safely and consistently"
-  default_prompt: "Use $syntavell-git-commit to review, stage, commit, and push the current Syntavell repository changes."
+  default_prompt: "Use $syntavell-git-commit to inspect Git state and prepare the requested Syntavell commit workflow."

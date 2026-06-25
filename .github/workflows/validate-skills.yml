@@ -11,6 +11,6 @@ permissions:
 
 jobs:
   validate:
-    uses: Syntavell/.github/.github/workflows/validate-codex-skills.yml@main
+    uses: Syntavell/.github/.github/workflows/validate-codex-skills.yml@39cb228dd1da3a1593572698bab6c7cf885b064d
     with:
-      validation-command: python scripts/validate_skills.py
+      validation-command: python -m pip install -r requirements-validator.txt && python scripts/validate_skills.py

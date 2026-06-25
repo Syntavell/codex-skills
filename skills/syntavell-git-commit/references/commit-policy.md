@@ -1,5 +1,17 @@
 # Syntavell Commit Policy
 
+## When to read
+
+Read this before staging, writing, amending, or reviewing a Syntavell commit message.
+
+## Operation Modes
+
+- `inspect-only` must not change Git state.
+- `stage-and-commit` may stage only inspected paths that belong to the requested logical change.
+- `amend` requires explicit user authorization and must report the previous and new commit hash.
+- `publish` requires explicit user authorization and must report the remote branch and pushed commit.
+- `submodule-pointer` must keep the submodule content commit separate from the parent pointer commit.
+
 ## Commit Message Format
 
 Use Conventional Commits with English subjects:
@@ -93,9 +105,16 @@ Before committing, inspect for:
 
 If any unsafe content appears, stop and remove it from the commit plan.
 
+Run deterministic staged checks when available:
+
+```bash
+python skills/syntavell-git-commit/scripts/check_staged_paths.py
+python skills/syntavell-git-commit/scripts/scan_staged_secrets.py
+```
+
 ## Push Rules
 
 - Commit locally first.
-- Push only when the user asked for remote update or the task is incomplete without the remote commit.
+- Push only when the user explicitly asked for remote update or the task is incomplete without the remote commit and the user authorized it.
 - If pushing to `main`, verify that direct pushes are acceptable for the repository stage. Mature protected repositories should use a branch and PR.
 - After pushing, report the remote branch and commit hash.

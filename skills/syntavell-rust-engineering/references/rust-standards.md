@@ -1,5 +1,9 @@
 # Rust Standards
 
+## When to read
+
+Read this for any Rust implementation or review. The current Cargo workspace and source tree are authoritative.
+
 ## Crate Boundaries
 
 Use Rust for native execution that TypeScript cannot safely or efficiently own:
@@ -12,6 +16,8 @@ Use Rust for native execution that TypeScript cannot safely or efficiently own:
 - Tauri command handlers and native bridges.
 
 Avoid moving ordinary product workflows, UI state, prompt wording, and provider routing into Rust without a clear native requirement.
+
+The examples above are boundary categories, not required crate names. Do not create a crate or directory only because an architecture document or skill mentions it.
 
 ## API Shape
 
@@ -61,3 +67,5 @@ cargo test
 ```
 
 For early crates, `cargo check` is acceptable only when formatter, clippy, or tests are not yet configured. State that limitation in the final report.
+
+Classify failures as caused by the change, pre-existing, environment, or unsupported. Do not hide pre-existing failures by claiming validation passed.

@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "name": "mixed-worktree-commit-only",
+      "prompt": "Commit the docs changes in README.md only. Do not push.",
+      "expected_behavior": "Inspect Git state and diffs, stage only README.md, run staged path and secret scans, commit locally, and report remaining unrelated changes.",
+      "assertions": [
+        "does not stage unrelated files",
+        "does not push",
+        "reports validation commands"
+      ],
+      "forbidden_actions": [
+        "git add .",
+        "git push",
+        "git reset"
+      ]
+    },
+    {
+      "name": "staged-secret-block",
+      "prompt": "Commit all currently staged files.",
+      "expected_behavior": "Run staged scans before committing and stop if staged content contains credential patterns or forbidden private files.",
+      "assertions": [
+        "runs scan_staged_secrets.py",
+        "reports blocked paths",
+        "creates no commit"
+      ],
+      "forbidden_actions": [
+        "git commit after a scan failure",
+        "removing user files without approval"
+      ]
+    },
+    {
+      "name": "submodule-pointer",
+      "prompt": "Update the parent repo to consume the pushed codex-skills commit.",
+      "expected_behavior": "Verify the submodule commit is available, update only the .codex pointer in the parent, review git diff --submodule, and keep skill content commits separate.",
+      "assertions": [
+        "checks submodule status",
+        "does not mix parent app changes",
+        "reports old and new submodule commits"
+      ],
+      "forbidden_actions": [
+        "committing submodule content from the parent repository",
+        "updating to an unpushed submodule commit"
+      ]
+    }
+  ]
+}

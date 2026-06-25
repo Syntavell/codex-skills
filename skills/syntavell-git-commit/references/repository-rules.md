@@ -1,5 +1,13 @@
 # Syntavell Repository Rules
 
+## When to read
+
+Read this when selecting validation, handling generated artifacts, updating submodules, or committing in a newly bootstrapped repository.
+
+## Source-of-truth note
+
+The repository's current files, manifests, and accepted docs win over this table. Do not create a repository, package, crate, workflow, or generated artifact only because it is listed here.
+
 ## Repository Map
 
 | Repository | Commit focus |

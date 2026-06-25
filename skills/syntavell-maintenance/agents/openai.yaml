@@ -1,4 +1,4 @@
 interface:
   display_name: "Syntavell Maintenance"
   short_description: "Maintain Syntavell repositories and releases"
-  default_prompt: "Use $syntavell-maintenance to plan and perform Syntavell repository maintenance."
+  default_prompt: "Use $syntavell-maintenance to classify and plan Syntavell repository maintenance."
