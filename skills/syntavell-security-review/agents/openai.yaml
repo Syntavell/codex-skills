@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntavell Security Review"
+  short_description: "Review Syntavell security-sensitive changes"
+  default_prompt: "Use $syntavell-security-review to review a Syntavell change for security risks."

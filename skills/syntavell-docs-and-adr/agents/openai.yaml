@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntavell Docs and ADR"
+  short_description: "Write Syntavell docs, RFCs, and ADRs"
+  default_prompt: "Use $syntavell-docs-and-adr to create or update Syntavell documentation."

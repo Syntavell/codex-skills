@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntavell Rust Engineering"
+  short_description: "Build Rust code for Syntavell safely"
+  default_prompt: "Use $syntavell-rust-engineering to implement Rust code in a Syntavell repository."

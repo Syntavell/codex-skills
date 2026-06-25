@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntavell TypeScript Engineering"
+  short_description: "Build TypeScript app code for Syntavell"
+  default_prompt: "Use $syntavell-typescript-engineering to implement TypeScript code in a Syntavell repository."
